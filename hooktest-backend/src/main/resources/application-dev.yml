@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:hooktest_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+jwt:
+  secret: dev-only-change-me-in-production-use-a-long-random-secret-at-least-32-chars
+  access-expiration: 900000
+  refresh-expiration: 604800000
+app:
+  frontend-url: http://localhost:5173
+  public-webhook-base-url: http://localhost:8080
