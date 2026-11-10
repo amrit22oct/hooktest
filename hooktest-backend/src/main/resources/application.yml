@@ -1,8 +1,28 @@
 spring:
+  application:
+   name: hooktest-backend
   profiles:
     active: dev
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
+
+ app:
+  jwt:
+    # Dev-only placeholder secret. MUST be replaced via JWT_SECRET env var in production.
+    secret: ${JWT_SECRET:9QNytXghyHjSxnA05cW+qJFPOM/UdP9/oxBHFQm75wwnCIqv56c7aUUYVqSPNE5EVXOJQkPcsp9fgVK0UorG4g==}
+    access-expiration: ${JWT_ACCESS_EXPIRATION:900000}
+    refresh-expiration: ${JWT_REFRESH_EXPIRATION:604800000}
+  cookie:
+    secure: ${COOKIE_SECURE:false}
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+  public-webhook-base-url: ${PUBLIC_WEBHOOK_BASE_URL:http://localhost:8080}
+
+  management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+        
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
